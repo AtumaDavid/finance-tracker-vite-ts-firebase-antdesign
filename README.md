@@ -5,3 +5,4 @@
 - npm install firebase
 - npm i react-router-dom
 - npm i react-toastify
+- npm i react-firebase-hooks/auth

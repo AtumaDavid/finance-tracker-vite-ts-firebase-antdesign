@@ -3,11 +3,13 @@ import Input from "../Input/Input";
 import "./styles.css";
 import Button from "../Button/Button";
 import {
+  GoogleAuthProvider,
   User,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth, db } from "../../firebase";
+import { auth, db, provider } from "../../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -110,6 +112,38 @@ export default function AuthComponent() {
     }
   };
 
+  const googleAuth = () => {
+    setLoading(true);
+    try {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          // const token = credential?.accessToken;
+          credential?.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          console.log(user);
+          createDoc(user);
+          setLoading(false);
+          navigate("/dashboard");
+          toast.success("user authenticated");
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          console.log(errorCode);
+
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+        });
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      toast.error("An error occurred");
+    }
+  };
+
   return (
     <>
       {loginForm ? (
@@ -140,6 +174,7 @@ export default function AuthComponent() {
             />
             <p style={{ textAlign: "center", margin: 0 }}>or</p>
             <Button
+              onClick={googleAuth}
               disabled={loading}
               text={loading ? "loading..." : "Login Using google"}
               blue={true}
@@ -189,6 +224,7 @@ export default function AuthComponent() {
             />
             <p style={{ textAlign: "center", margin: 0 }}>or</p>
             <Button
+              onClick={googleAuth}
               disabled={loading}
               text={loading ? "loading..." : "Sign Up Using google"}
               blue={true}
