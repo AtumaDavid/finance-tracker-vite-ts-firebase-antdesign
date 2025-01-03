@@ -7,6 +7,7 @@ interface InputProps {
   setState:
     | React.Dispatch<React.SetStateAction<string>>
     | ((value: string) => void);
+  type?: string;
 }
 
 export default function Input({
@@ -14,11 +15,13 @@ export default function Input({
   state,
   setState,
   placeholder,
+  type,
 }: InputProps) {
   return (
     <div className="input-wrapper">
       <p className="label-input">{label}</p>
       <input
+        type={type}
         value={state}
         onChange={(e) => setState(e.target.value)}
         placeholder={placeholder}

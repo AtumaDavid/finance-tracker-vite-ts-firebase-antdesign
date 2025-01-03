@@ -4,11 +4,15 @@ interface ButtonProps {
   text: string;
   onClick: () => void;
   blue?: boolean;
+  disabled: boolean;
 }
 
-export default function Button({ text, onClick, blue }: ButtonProps) {
+export default function Button({ text, onClick, blue, disabled }: ButtonProps) {
   return (
-    <div onClick={onClick} className={blue ? "btn btn-blue" : "btn"}>
+    <div
+      onClick={disabled ? undefined : onClick}
+      className={blue ? "btn btn-blue" : "btn"}
+    >
       {text}
     </div>
   );
