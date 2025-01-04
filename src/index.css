@@ -15,3 +15,22 @@ body {
   margin: 0;
   font-family: "Montserrat", serif;
 }
+
+.custom-input {
+  border: 0px;
+  border-bottom: 1px solid var(--black);
+  border-radius: 0;
+  padding: 0.5rem 0rem;
+  width: 100%;
+  margin-top: -1rem !important;
+}
+
+.custom-input::placeholder {
+  color: var(--black);
+}
+
+.custom-input:focus {
+  outline: none;
+  opacity: 1;
+  transition: all 0.3s;
+}
