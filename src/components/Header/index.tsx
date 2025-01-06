@@ -4,6 +4,7 @@ import "./style.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import userImg from "../../assets/user.svg";
 
 export default function Header() {
   const [user, loading] = useAuthState(auth);
@@ -28,9 +29,16 @@ export default function Header() {
     <div className="navbar">
       <p className="logo">Fin-Track</p>
       {user && (
-        <p className="logo link" onClick={handleLogout}>
-          Logout
-        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <img
+            src={user.photoURL ? user.photoURL : userImg}
+            alt=""
+            style={{ borderRadius: "50%", height: "2rem", width: "2rem" }}
+          />
+          <p className="logo link" onClick={handleLogout}>
+            Logout
+          </p>
+        </div>
       )}
       {/* <p>{user?.displayName}</p> */}
     </div>

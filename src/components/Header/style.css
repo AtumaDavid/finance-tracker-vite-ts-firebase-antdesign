@@ -7,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
+  width: 100%;
+  /* flex-wrap: wrap; Added for responsiveness */
 }
 
 .logo {
@@ -17,6 +20,12 @@
   padding: 1rem;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Creates space between links */
+}
+
 .link {
   opacity: 0.8;
   cursor: pointer;
@@ -25,4 +34,25 @@
 .link:hover {
   opacity: 1;
   transition: all 0.3s;
+}
+
+/* Mobile Responsive Breakpoints */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+  }
 }

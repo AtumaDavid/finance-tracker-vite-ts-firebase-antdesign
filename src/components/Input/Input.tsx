@@ -1,7 +1,7 @@
 import "./InputStyles.css";
 
 interface InputProps {
-  label: string;
+  label?: string;
   placeholder: string;
   state: string;
   setState:

@@ -1,0 +1,12 @@
+.my-table {
+  width: 100%;
+  overflow-x: auto; /* Horizontal scroll on small screens */
+}
+
+.ant-table {
+  width: 100% !important;
+}
+
+.ant-table-container {
+  width: 100% !important;
+}
